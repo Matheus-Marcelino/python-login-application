@@ -8,9 +8,8 @@ from kivymd.uix.label import MDIcon
 
 
 class Login(MDApp):
-    FpsMonitoring().fps_monitor_start()
-
     def build(self):
+        FpsMonitoring().fps_monitor_start()
         return Builder.load_file('properties.kv')
 
 

@@ -11,6 +11,7 @@ FloatLayout:
         icon_left: 'account-edit'
         max_length_text_color: 'blue'
         max_text_length: 60
+        required: True
     MDTextField:
         pos_hint:{'center_x': 0.5, 'center_y': 0.6}
         size_hint_x: 0.4
@@ -18,6 +19,7 @@ FloatLayout:
         hint_text: 'Email'
         validator: 'email'
         icon_left: 'email'
+        required: True
     MDTextField:
         pos_hint:{'center_x': 0.5, 'center_y': 0.5}
         size_hint_x: 0.4
@@ -25,6 +27,7 @@ FloatLayout:
         hint_text: 'Password'
         icon_right: 'eye'
         password: True
+        required: True
     MDRectangleFlatButton:
         pos_hint:{'center_x': 0.5, 'center_y': 0.4}
         size_hint_x: 0.4
