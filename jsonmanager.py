@@ -1,6 +1,6 @@
 from json import load, dump
 from json.decoder import JSONDecodeError
-from hashlib import md5
+from hashlib import sha256
 
 
 class JsonManager:
@@ -25,9 +25,9 @@ class JsonManager:
                                  f"{data['email']}".encode('utf-8'),
                                  f"{data['pass']}".encode('utf-8'))
         
-        data['user'] = md5(ENCODED[0]).hexdigest()
-        data['email'] = md5(ENCODED[1]).hexdigest()
-        data['pass'] = md5(ENCODED[2]).hexdigest()
+        data['user'] = sha256(ENCODED[0]).hexdigest()
+        data['email'] = sha256(ENCODED[1]).hexdigest()
+        data['pass'] = sha256(ENCODED[2]).hexdigest()
 
         with open(self.__FILE, 'w+', encoding='utf-8') as f:
            dump(data, f, indent=4)
