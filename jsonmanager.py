@@ -21,10 +21,13 @@ class JsonManager:
         return obj_json
 
     def insert(self, data: dict) -> None:
-        ENCODED: tuple[bytes, bytes] = (f"{data['user']}".encode('utf-8'),
-                                        f"{data['pass']}".encode('utf-8'))
+        ENCODED: tuple[bytes] = (f"{data['user']}".encode('utf-8'),
+                                 f"{data['email']}".encode('utf-8'),
+                                 f"{data['pass']}".encode('utf-8'))
+        
         data['user'] = md5(ENCODED[0]).hexdigest()
-        data['pass'] = md5(ENCODED[1]).hexdigest()
+        data['email'] = md5(ENCODED[1]).hexdigest()
+        data['pass'] = md5(ENCODED[2]).hexdigest()
 
         with open(self.__FILE, 'w+', encoding='utf-8') as f:
            dump(data, f, indent=4)
