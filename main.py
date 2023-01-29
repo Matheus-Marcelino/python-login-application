@@ -1,17 +1,12 @@
-from kivy.app import App
-from kivy.uix import button
-from kivy.uix import label
-from kivy.uix import layout
-from kivy.uix import checkbox
-from kivy.uix import image
-from kivy.uix import textinput
+from kivymd.app import MDApp
+from kivymd.app import FpsMonitoring
 
 
-class Aplication(App):
-    def build(self):
-        pass
+class Login(MDApp):
+    FpsMonitoring().fps_monitor_start()
+    
 
 
 if __name__ == '__main__':
-    app = Aplication()
+    app = Login()
     app.run()
