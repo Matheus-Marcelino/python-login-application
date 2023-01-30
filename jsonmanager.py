@@ -13,8 +13,10 @@ class JsonManager:
                 obj_json: dict = load(f)
         except (FileNotFoundError, JSONDecodeError):
             with open(self.__FILE, 'w+',encoding='utf-8') as file_error_json:
-                SHOW_ERROR: dict = {'message': 'error'}
-                dump(SHOW_ERROR, file_error_json, indent=4)
+                RECOVER: dict = {'user': '',
+                                 'email': '',
+                                 'pass': ''}
+                dump(RECOVER, file_error_json, indent=4)
 
         with open(self.__FILE, encoding='utf-8') as file_json:
             obj_json = load(file_json)

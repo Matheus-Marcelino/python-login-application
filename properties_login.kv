@@ -1,5 +1,6 @@
 Screen:
     MDCard:
+        id: login
         pos_hint:{'center_x': 0.5, 'center_y': 0.5}
         size_hint: None, None
         size: 400, 450
@@ -10,13 +11,13 @@ Screen:
 
         FloatLayout:
             MDIconButton:
-                pos_hint: {"center_x": 0.5, 'center_y': 0.88}
+                pos_hint: {'center_x': 0.5, 'center_y': 0.88}
                 icon: 'account-circle'
                 icon_size: 70
                 on_press: app.change_theme()
             MDTextField:
                 id: user
-                pos_hint: {"center_x": 0.5, 'center_y': 0.7}
+                pos_hint: {'center_x': 0.5, 'center_y': 0.7}
                 size_hint_x: 0.77
                 mode: 'line'
                 hint_text: 'name'
@@ -25,7 +26,8 @@ Screen:
                 max_text_length: 60
                 required: True
             MDTextField:
-                pos_hint: {"center_x": 0.5, 'center_y': 0.55}
+                id: gmail
+                pos_hint: {'center_x': 0.5, 'center_y': 0.55}
                 size_hint_x: 0.77
                 mode: 'line'
                 hint_text: 'Email'
@@ -33,7 +35,8 @@ Screen:
                 icon_right: 'email'
                 required: True
             MDTextField:
-                pos_hint: {"center_x": 0.5, 'center_y': 0.4}
+                id: pw
+                pos_hint: {'center_x': 0.5, 'center_y': 0.4}
                 size_hint_x: 0.77
                 mode: 'line'
                 hint_text: 'Password'
@@ -42,14 +45,19 @@ Screen:
                 required: True
             MDTextButton:
                 id: fg_pass
-                pos_hint: {"center_x": 0.5, 'center_y': 0.28}
+                pos_hint: {'center_x': 0.5, 'center_y': 0.28}
                 text: 'Forgot password?'
                 color: '#2096f2'
                 on_press:
             MDRectangleFlatButton:
-                pos_hint: {"center_x": 0.5, 'center_y': 0.15}
+                pos_hint: {'center_x': 0.5, 'center_y': 0.15}
                 size_hint_x: 0.77
                 text: 'Login'
                 text_color: 'white'
                 md_bg_color: '#2096f2'
-                on_press:
+                on_press: app.acess()
+            MDLabel:
+                id: not_acess
+                pos_hint: {'center_x': 0.83, 'center_y': .04 }
+                text: ''
+                color: (1, 0, 0, 1)
