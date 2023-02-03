@@ -1,11 +1,10 @@
 from kivymd.app import MDApp
 from kivymd.app import Builder
-from kivymd.app import FpsMonitoring
-from kivymd.uix.textfield import MDTextField
 from kivymd.uix.screen import Screen
 from kivymd.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from jsonmanager import JsonManager
+from jsonmanager import SHA256
 
 
 class LoginScreen(Screen):
@@ -45,18 +44,20 @@ class Cadastro(MDApp):
 
     # Login
     def access(self):
-        self.__file_js: dict = JsonManager().load_file()  # mantém sempre atualizado
+        __file_js: dict = JsonManager().load_file()  # mantém sempre atualizado
         if not self.__ID.gmail.error:
             if not any(domain in self.__ID.gmail.text for domain in self.__DOMAIN):
                 self.__ID.gmail.error = True
                 self.__ID.gmail.helper_text = 'Incorrect domain'
                 self.__ID.gmail.helper_text_mode = 'on_error'
             else:
-                if self.__file_js['mail'] == self.__ID.gmail.text:
+                if __file_js['email'] == SHA256(self.__ID.gmail.text):
                     self.__ID.gmail.error = False
                     self.__ID.gmail.helper_text = ''
                 else:
                     self.__ID.gmail.error = True
+                    self.__ID.user.error = True
+                    self.__ID.pw.error = True
 
         if not self.__ID.user.error:
             if len(self.__ID.user.text) > 30:
@@ -68,22 +69,30 @@ class Cadastro(MDApp):
                 self.__ID.user.helper_text = 'type something'
                 self.__ID.user.helper_text_mode = 'on_error'
             else:
-                if self.__file_js['user'] == self.__ID.user.text:
+                if __file_js['user'] == SHA256(self.__ID.user.text):
                     self.__ID.user.error = False
                     self.__ID.user.helper_text = ''
                 else:
+                    self.__ID.gmail.error = True
                     self.__ID.user.error = True
+                    self.__ID.pw.error = True
 
         if not self.__ID.pw.error:
             if len(self.__ID.pw.text) < 8:
                 self.__ID.pw.error = True
                 self.__ID.pw.helper_text = 'your password has to be greater than or equal to 8'
                 self.__ID.pw.helper_text_mode = 'on_error'
-            elif self.__file_js['pass'] == self.__ID.gmail.text:
+            elif __file_js['pass'] == SHA256(self.__ID.pw.text):
                 self.__ID.pw.error = False
                 self.__ID.pw.helper_text = ''
             else:
+                self.__ID.gmail.error = True
+                self.__ID.user.error = True
                 self.__ID.pw.error = True
+
+        if not self.__ID.pw.error and not self.__ID.user.error\
+           and not self.__ID.gmail.error:
+               print('Logado')
 
     def verify_sign(self):
         # Avisos
@@ -146,6 +155,11 @@ class Cadastro(MDApp):
             self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
                 self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
                 self.__ID.user_crt.error = self.__ID.user_crt.error = False
+                
+            # Adicionando dados
+            __file_js = JsonManager().insert({'user': self.__ID.user_crt.text,
+                                              'email': self.__ID.gmail_crt.text,
+                                              'pass': self.__ID.pw_crt_vrf.text})
 
             print('registrado')
 

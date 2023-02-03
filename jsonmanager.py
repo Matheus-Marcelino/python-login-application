@@ -3,6 +3,10 @@ from json.decoder import JSONDecodeError
 from hashlib import sha256
 
 
+def SHA256(text: str) -> str:
+    return sha256(text.encode('utf-8')).hexdigest()
+
+
 class JsonManager:
     def __init__(self) -> None:
         self.__FILE: str = 'data.json'    
@@ -23,13 +27,9 @@ class JsonManager:
         return obj_json
 
     def insert(self, data: dict) -> None:
-        ENCODED: tuple[bytes] = (f"{data['user']}".encode('utf-8'),
-                                 f"{data['email']}".encode('utf-8'),
-                                 f"{data['pass']}".encode('utf-8'))
-        
-        data['user'] = sha256(ENCODED[0]).hexdigest()
-        data['email'] = sha256(ENCODED[1]).hexdigest()
-        data['pass'] = sha256(ENCODED[2]).hexdigest()
+        data['user'] = SHA256(data['user'])
+        data['email'] = SHA256(data['email'])
+        data['pass'] = SHA256(data['pass'])
 
         with open(self.__FILE, 'w+', encoding='utf-8') as f:
            dump(data, f, indent=4)
