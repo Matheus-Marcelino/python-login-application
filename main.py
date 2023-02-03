@@ -71,13 +71,31 @@ class Cadastro(MDApp):
 
         if self.__ID.user_crt.error:
             if len(self.__ID.user_crt.text) <= 31:
-                self.__ID.user_crt.error.helper_text = 'why such a big name?'
-                self.__ID.user_crt.error.helper_text_mode= 'on_error'                
+                self.__ID.user_crt.helper_text = 'why such a big name?'
+                self.__ID.user_crt.helper_text_mode= 'on_error'                
             if len(self.__ID.user_crt.text) == 0:
-                self.__ID.user_crt.error.helper_text = 'type something'
-                self.__ID.user_crt.error.helper_text_mode= 'on_error'
+                self.__ID.user_crt.helper_text = 'type something'
+                self.__ID.user_crt.helper_text_mode = 'on_error'
 
+        if not self.__ID.pw_crt.error and self.__ID.pw_crt.text < 8:
+            self.__ID.pw_crt.helper_text = 'Your password must be greater than 8'
+            self.__ID.pw_crt.helper_text_mode = 'on_error'
+
+        if not self.__ID.pw_crt_vrf.error and self.__ID.pw_crt_vrf.text < 8:
+            self.__ID.pw_crt_vrf.helper_text = 'Your password must be greater than 8'
+            self.__ID.pw_crt_vrf.helper_text_mode = 'on_error'
+
+        if not self.__ID.pw_crt_vrf.error or not self.__ID.pw_crt.error:
+            if not self.__ID.pw_crt_vrf.text == self.__ID.pw_crt.text:
+                self.__ID.pw_crt.helper_text = 'Passwords must be the same'
+                self.__ID.pw_crt_vrf.helper_text = 'Passwords must be the same'
+                self.__ID.pw_crt_vrf.helper_text_mode = 'on_error'
+                self.__ID.pw_crt.helper_text_mode = 'on_error'
         
+        if not self.__ID.gmail_crt.error and not self.__ID.user_crt.error and\
+           not self.__ID.pw_crt.error and not self.__ID.pw_crt_vrf.error:
+               print('registrado')
+
 
 if __name__ == '__main__':
     Cadastro().run()
