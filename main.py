@@ -92,7 +92,7 @@ class Cadastro(MDApp):
 
         if not self.__ID.pw.error and not self.__ID.user.error\
            and not self.__ID.gmail.error:
-               print('Logado')
+            print('Logado')
 
     def verify_sign(self):
         # Avisos
@@ -155,7 +155,7 @@ class Cadastro(MDApp):
             self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
                 self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
                 self.__ID.user_crt.error = self.__ID.user_crt.error = False
-                
+
             # Adicionando dados
             __file_js = JsonManager().insert({'user': self.__ID.user_crt.text,
                                               'email': self.__ID.gmail_crt.text,
