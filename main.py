@@ -57,34 +57,60 @@ class Cadastro(MDApp):
                 self.__ID.gmail_crt.helper_text = 'Incorrect domain'
                 self.__ID.gmail_crt.helper_text_mode = 'on_error'
             else:
+                self.__ID.user_crt.error = False
                 self.__ID.gmail_crt.helper_text = ''
 
         if self.__ID.user_crt.error:
-            if len(self.__ID.user_crt.text) <= 31:
+            if len(self.__ID.user_crt.text) < 31:
+                self.__ID.user_crt.error = True
                 self.__ID.user_crt.helper_text = 'why such a big name?'
                 self.__ID.user_crt.helper_text_mode = 'on_error'
-            if len(self.__ID.user_crt.text) == 0:
+            elif len(self.__ID.user_crt.text) == 0:
+                self.__ID.user_crt.error = True
                 self.__ID.user_crt.helper_text = 'type something'
                 self.__ID.user_crt.helper_text_mode = 'on_error'
+            else:
+                self.__ID.user_crt.error = False
+                self.__ID.user_crt.helper_text = ''
 
-        if not self.__ID.pw_crt.error and self.__ID.pw_crt.text < 8:
-            self.__ID.pw_crt.helper_text = 'Your password must be greater than 8'
+        if not self.__ID.pw_crt.error and len(self.__ID.pw_crt.text) < 8:
+            self.__ID.pw_crt.error = True
+            self.__ID.pw_crt.helper_text = 'your password has to be greater than or equal to 8'
             self.__ID.pw_crt.helper_text_mode = 'on_error'
+        else:
+            self.__ID.pw_crt.error = False
+            self.__ID.pw_crt.helper_text = ''
 
-        if not self.__ID.pw_crt_vrf.error and self.__ID.pw_crt_vrf.text < 8:
-            self.__ID.pw_crt_vrf.helper_text = 'Your password must be greater than 8'
+        if not self.__ID.pw_crt_vrf.error and len(self.__ID.pw_crt_vrf.text) < 8:
+            self.__ID.pw_crt_vrf.error = True
+            self.__ID.pw_crt_vrf.helper_text = 'your password has to be greater than or equal to 8'
             self.__ID.pw_crt_vrf.helper_text_mode = 'on_error'
+        else:
+            self.__ID.pw_crt_vrf.error = False
+            self.__ID.pw_crt_vrf.helper_text = ''
 
         if not self.__ID.pw_crt_vrf.error or not self.__ID.pw_crt.error:
             if not self.__ID.pw_crt_vrf.text == self.__ID.pw_crt.text:
-                self.__ID.pw_crt.helper_text = 'Passwords must be the same'
-                self.__ID.pw_crt_vrf.helper_text = 'Passwords must be the same'
-                self.__ID.pw_crt_vrf.helper_text_mode = 'on_error'
-                self.__ID.pw_crt.helper_text_mode = 'on_error'
+                self.__ID.pw_crt.helper_text = self.__ID.pw_crt_vrf.helper_text = 'Passwords must be the same'
+                self.__ID.pw_crt_vrf.helper_text_mode = self.__ID.pw_crt.helper_text_mode = 'on_error'
+                self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error = True
+        else:
+            self.__ID.pw_crt.helper_text = self.__ID.pw_crt_vrf.helper_text = ''
+            self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error = False
 
         # Acesso
         if not self.__ID.gmail_crt.error and not self.__ID.user_crt.error and\
            not self.__ID.pw_crt.error and not self.__ID.pw_crt_vrf.error:
+
+            # Retirando mensagem de ajuda
+            self.__ID.gmail_crt.helper_text = self.__ID.user_crt.helper_text =\
+            self.__ID.pw_crt.helper_text = self.__ID.pw_crt_vrf.helper_text = ''
+
+            # Retirando o error 
+            self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
+            self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
+            self.__ID.user_crt.error = self.__ID.user_crt.error = False
+
             print('registrado')
 
 
