@@ -27,6 +27,7 @@ class Cadastro(MDApp):
         self.screen_manager.add_widget(self.signup_screen)
         self.__FILE = Builder.load_file('properties_login.kv')
         self.__ID = self.__FILE.ids
+        self.__DOMAIN: tuple = ('@gmail.com', '@outlook.com')
         return self.__FILE
 
     def on_start(self):
@@ -37,27 +38,17 @@ class Cadastro(MDApp):
         if self.theme_cls.theme_style == 'Light':
             self.theme_cls.theme_style = 'Dark'
             self.__ID.fg_pass.color = '#2096f2'
-            self.__ID.not_access.color = (1, 0, 0, 1)
         else:
             self.theme_cls.theme_style = 'Light'
             Window.clearcolor = (234, 234, 234, 1)
             self.__ID.fg_pass.color = '#2096f2'
-            self.__ID.not_access.color = (1, 0, 0, 1)
 
     # Login
     def access(self):
         self.__file_js: dict = JsonManager().load_file()  # mantém sempre atualizado
-        if self.__file_js['user'] == self.__ID.user.text \
-           and self.__file_js['email'] == self.__ID.gmail.text \
-           and self.__file_js['pass'] == self.__ID.pw.text:
-            self.__ID.not_access.text = ''
-            print('Accesso permitido!')
-        else:
-            self.__ID.not_access.text = 'invalid information'
+        pass
 
     def verify_sign(self):
-        self.__DOMAIN: tuple = ('@gmail.com', '@outlook.com')
-        
         # Avisos
         if not self.__ID.gmail_crt.error:
             if not any(domain in self.__ID.gmail_crt.text for domain in self.__DOMAIN):
