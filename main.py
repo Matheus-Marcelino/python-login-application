@@ -55,14 +55,14 @@ class Cadastro(MDApp):
                 print(self.__ID.gmail_crt.text)
                 self.__ID.gmail_crt.error = True
                 self.__ID.gmail_crt.helper_text = 'Incorrect domain'
-                self.__ID.gmail_crt.helper_text_mode= 'on_error'
+                self.__ID.gmail_crt.helper_text_mode = 'on_error'
             else:
                 self.__ID.gmail_crt.helper_text = ''
 
         if self.__ID.user_crt.error:
             if len(self.__ID.user_crt.text) <= 31:
                 self.__ID.user_crt.helper_text = 'why such a big name?'
-                self.__ID.user_crt.helper_text_mode= 'on_error'                
+                self.__ID.user_crt.helper_text_mode = 'on_error'
             if len(self.__ID.user_crt.text) == 0:
                 self.__ID.user_crt.helper_text = 'type something'
                 self.__ID.user_crt.helper_text_mode = 'on_error'
@@ -85,7 +85,7 @@ class Cadastro(MDApp):
         # Acesso
         if not self.__ID.gmail_crt.error and not self.__ID.user_crt.error and\
            not self.__ID.pw_crt.error and not self.__ID.pw_crt_vrf.error:
-               print('registrado')
+            print('registrado')
 
 
 if __name__ == '__main__':
