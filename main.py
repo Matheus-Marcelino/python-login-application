@@ -55,7 +55,6 @@ class Cadastro(MDApp):
         else:
             self.__ID.not_access.text = 'invalid information'
 
-    # SingUp
     def verify_sign(self):
         self.__DOMAIN: tuple = ('@gmail.com', '@outlook.com')
         
@@ -91,7 +90,8 @@ class Cadastro(MDApp):
                 self.__ID.pw_crt_vrf.helper_text = 'Passwords must be the same'
                 self.__ID.pw_crt_vrf.helper_text_mode = 'on_error'
                 self.__ID.pw_crt.helper_text_mode = 'on_error'
-        
+
+        # Acesso
         if not self.__ID.gmail_crt.error and not self.__ID.user_crt.error and\
            not self.__ID.pw_crt.error and not self.__ID.pw_crt_vrf.error:
                print('registrado')

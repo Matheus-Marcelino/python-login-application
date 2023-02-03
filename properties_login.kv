@@ -1,12 +1,16 @@
 <LoginScreen>:
-    MDRectangleFlatButton:
-        text: 'Go to Sign Up'
-        on_press: root.manager.current = 'signup'
+    FloatLayout:
+        MDRectangleFlatButton:
+            text: 'Go to Sign Up'
+            on_press: root.manager.current = 'signup'
 
 <SignUpScreen>:
-    MDRectangleFlatButton:
-        text: 'Go to Login'
-        on_release: root.manager.current = 'login'
+    FloatLayout:
+        MDRectangleFlatButton:
+            pos_hint: {'center_x': 0.5, 'center_y': 0.05}
+            size_hint_x: 0.47
+            text: 'Go to Login'
+            on_release: root.manager.current = 'login'
 
 ScreenManager:
     SignUpScreen:
