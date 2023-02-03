@@ -8,10 +8,12 @@ from kivy.core.window import Window
 from jsonmanager import JsonManager
 
 
-class LoginScreen(Screen):...
+class LoginScreen(Screen):
+    ...
 
 
-class SignUpScreen(Screen):...
+class SignUpScreen(Screen):
+    ...
 
 
 class Cadastro(MDApp):
@@ -44,7 +46,7 @@ class Cadastro(MDApp):
 
     # Login
     def access(self):
-        self.__file_js: dict = JsonManager().load_file()  # sempre manter atualizado
+        self.__file_js: dict = JsonManager().load_file()  # mantém sempre atualizado
         if self.__file_js['user'] == self.__ID.user.text \
            and self.__file_js['email'] == self.__ID.gmail.text \
            and self.__file_js['pass'] == self.__ID.pw.text:
@@ -53,9 +55,29 @@ class Cadastro(MDApp):
         else:
             self.__ID.not_access.text = 'invalid information'
 
+    # SingUp
     def verify_sign(self):
-        print(self.__ID.gmail_crt.error)
+        self.__DOMAIN: tuple = ('@gmail.com', '@outlook.com')
+        
+        # Avisos
+        if not self.__ID.gmail_crt.error:
+            if not any(domain in self.__ID.gmail_crt.text for domain in self.__DOMAIN):
+                print(self.__ID.gmail_crt.text)
+                self.__ID.gmail_crt.error = True
+                self.__ID.gmail_crt.helper_text = 'Incorrect domain'
+                self.__ID.gmail_crt.helper_text_mode= 'on_error'
+            else:
+                self.__ID.gmail_crt.helper_text = ''
 
+        if self.__ID.user_crt.error:
+            if len(self.__ID.user_crt.text) <= 31:
+                self.__ID.user_crt.error.helper_text = 'why such a big name?'
+                self.__ID.user_crt.error.helper_text_mode= 'on_error'                
+            if len(self.__ID.user_crt.text) == 0:
+                self.__ID.user_crt.error.helper_text = 'type something'
+                self.__ID.user_crt.error.helper_text_mode= 'on_error'
+
+        
 
 if __name__ == '__main__':
     Cadastro().run()
