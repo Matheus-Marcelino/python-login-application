@@ -24,7 +24,7 @@ class Cadastro(MDApp):
         self.signup_screen = SignUpScreen(name='signup')
         self.screen_manager.add_widget(self.login_screen)
         self.screen_manager.add_widget(self.signup_screen)
-        self.__FILE = Builder.load_file('properties_login.kv')
+        self.__FILE = Builder.load_file('properties.kv')
         self.__ID = self.__FILE.ids
         self.__DOMAIN: tuple = ('@gmail.com', '@outlook.com')
         return self.__FILE
