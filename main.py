@@ -55,8 +55,7 @@ class Cadastro(MDApp):
                     self.__ID.gmail.error = False
                     self.__ID.gmail.helper_text = ''
                 else:
-                    self.__ID.gmail.error = True
-                    self.__ID.user.error = True
+                    self.__ID.gmail.error = self.__ID.user.error =\
                     self.__ID.pw.error = True
 
         if not self.__ID.user.error:
@@ -73,8 +72,7 @@ class Cadastro(MDApp):
                     self.__ID.user.error = False
                     self.__ID.user.helper_text = ''
                 else:
-                    self.__ID.gmail.error = True
-                    self.__ID.user.error = True
+                    self.__ID.gmail.error = self.__ID.user.error =\
                     self.__ID.pw.error = True
 
         if not self.__ID.pw.error:
@@ -86,14 +84,14 @@ class Cadastro(MDApp):
                 self.__ID.pw.error = False
                 self.__ID.pw.helper_text = ''
             else:
-                self.__ID.gmail.error = True
-                self.__ID.user.error = True
+                self.__ID.gmail.error = self.__ID.user.error =\
                 self.__ID.pw.error = True
 
         if not self.__ID.pw.error and not self.__ID.user.error\
            and not self.__ID.gmail.error:
             print('Logado')
 
+    # SingUp
     def verify_sign(self):
         # Avisos
         if not self.__ID.gmail_crt.error:
@@ -157,9 +155,9 @@ class Cadastro(MDApp):
                 self.__ID.user_crt.error = self.__ID.user_crt.error = False
 
             # Adicionando dados
-            __file_js = JsonManager().insert({'user': self.__ID.user_crt.text,
-                                              'email': self.__ID.gmail_crt.text,
-                                              'pass': self.__ID.pw_crt_vrf.text})
+            JsonManager().insert({'user': self.__ID.user_crt.text,
+                                  'email': self.__ID.gmail_crt.text,
+                                  'pass': self.__ID.pw_crt_vrf.text})
 
             print('registrado')
 
