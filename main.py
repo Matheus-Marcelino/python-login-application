@@ -52,11 +52,14 @@ class Cadastro(MDApp):
                 self.__ID.gmail.helper_text = 'Incorrect domain'
                 self.__ID.gmail.helper_text_mode = 'on_error'
             else:
-                self.__ID.user.error = False
-                self.__ID.gmail.helper_text = ''
+                if self.__file_js['mail'] == self.__ID.gmail.text:
+                    self.__ID.gmail.error = False
+                    self.__ID.gmail.helper_text = ''
+                else:
+                    self.__ID.gmail.error = True
 
-        if not self.__ID.user.error :
-            if len(self.__ID.user.text) < 31:
+        if not self.__ID.user.error:
+            if len(self.__ID.user.text) > 30:
                 self.__ID.user.error = True
                 self.__ID.user.helper_text = 'why such a big name?'
                 self.__ID.user.helper_text_mode = 'on_error'
@@ -65,16 +68,22 @@ class Cadastro(MDApp):
                 self.__ID.user.helper_text = 'type something'
                 self.__ID.user.helper_text_mode = 'on_error'
             else:
-                self.__ID.user.error = False
-                self.__ID.user.helper_text = ''
+                if self.__file_js['user'] == self.__ID.user.text:
+                    self.__ID.user.error = False
+                    self.__ID.user.helper_text = ''
+                else:
+                    self.__ID.user.error = True
 
-        if not self.__ID.pw.error and len(self.__ID.pw.text) < 8:
-            self.__ID.pw.error = True
-            self.__ID.pw.helper_text = 'your password has to be greater than or equal to 8'
-            self.__ID.pw.helper_text_mode = 'on_error'
-        else:
-            self.__ID.pw.error = False
-            self.__ID.pw.helper_text = ''
+        if not self.__ID.pw.error:
+            if len(self.__ID.pw.text) < 8:
+                self.__ID.pw.error = True
+                self.__ID.pw.helper_text = 'your password has to be greater than or equal to 8'
+                self.__ID.pw.helper_text_mode = 'on_error'
+            elif self.__file_js['pass'] == self.__ID.gmail.text:
+                self.__ID.pw.error = False
+                self.__ID.pw.helper_text = ''
+            else:
+                self.__ID.pw.error = True
 
     def verify_sign(self):
         # Avisos
@@ -88,7 +97,7 @@ class Cadastro(MDApp):
                 self.__ID.gmail_crt.helper_text = ''
 
         if not self.__ID.user_crt.error:
-            if len(self.__ID.user_crt.text) < 31:
+            if len(self.__ID.user_crt.text) > 30:
                 self.__ID.user_crt.error = True
                 self.__ID.user_crt.helper_text = 'why such a big name?'
                 self.__ID.user_crt.helper_text_mode = 'on_error'
