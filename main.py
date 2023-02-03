@@ -103,12 +103,12 @@ class Cadastro(MDApp):
 
             # Retirando mensagem de ajuda
             self.__ID.gmail_crt.helper_text = self.__ID.user_crt.helper_text =\
-            self.__ID.pw_crt.helper_text = self.__ID.pw_crt_vrf.helper_text = ''
+                self.__ID.pw_crt.helper_text = self.__ID.pw_crt_vrf.helper_text = ''
 
-            # Retirando o error 
+            # Retirando o error
             self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
-            self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
-            self.__ID.user_crt.error = self.__ID.user_crt.error = False
+                self.__ID.pw_crt.error = self.__ID.pw_crt_vrf.error =\
+                self.__ID.user_crt.error = self.__ID.user_crt.error = False
 
             print('registrado')
 
