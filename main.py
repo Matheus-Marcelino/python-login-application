@@ -52,7 +52,6 @@ class Cadastro(MDApp):
         # Avisos
         if not self.__ID.gmail_crt.error:
             if not any(domain in self.__ID.gmail_crt.text for domain in self.__DOMAIN):
-                print(self.__ID.gmail_crt.text)
                 self.__ID.gmail_crt.error = True
                 self.__ID.gmail_crt.helper_text = 'Incorrect domain'
                 self.__ID.gmail_crt.helper_text_mode = 'on_error'
