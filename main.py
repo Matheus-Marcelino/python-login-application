@@ -5,6 +5,7 @@ from kivymd.uix.screenmanager import ScreenManager
 from kivy.core.window import Window
 from jsonmanager import JsonManager
 from jsonmanager import SHA256
+from kivymd.uix.button import MDRectangleFlatButton
 
 
 class LoginScreen(Screen):
