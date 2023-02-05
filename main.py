@@ -1,3 +1,6 @@
+# Created by: Matheus Marcelino Lopes
+# Ended on 05/02/2023
+
 from kivymd.app import MDApp
 from kivymd.app import Builder
 from kivymd.uix.screen import Screen
